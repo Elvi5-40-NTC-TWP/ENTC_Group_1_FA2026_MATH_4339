@@ -1,0 +1,36 @@
+---
+title: "MATH 4339 - Group 1 Project Report Fall 2026"
+author: "Mohammed Meje"
+format: 
+  pdf:
+    mainfont: "Times New Roman"
+    papersize: "us-letter"
+    margin:
+      x: 1in
+      y: 1n
+    highlight-style: tango
+    code-block-bg: lightgray
+    include-in-header: 
+      text: |
+         \usepackage{fvextra}
+         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+header-includes: 
+- \newcommand{\bi}{\begin{itemize}}
+- \newcommand{\ei}{\end{itemize}}
+- \newcommand{\iset}{\setlength\itemsep{1em}}
+- \usepackage{amsbsy}
+- \usepackage{hyperref}
+- \usepackage{amsmath}
+- \newcommand{\blue}[1]{\textcolor{blue}{#1}}
+- \newcommand{\red}[1]{\textcolor{red}{#1}}
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{r}
+1 + 1
+```
+
+Testing changes
