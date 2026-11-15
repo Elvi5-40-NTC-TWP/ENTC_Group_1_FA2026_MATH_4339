@@ -29,6 +29,30 @@ Rice_Dataset.PC.Plot <- ggplot(Rice_Dataset.PC.Data, aes(x = PC1, y = PC2, color
   theme_minimal()
 
 print(Rice_Dataset.PC)
-print(summary(Rice_Dataset.PC))
+print(summary(Rice_Dataset.PC)) # Does print really need to be there? 11/15/26 Mohammed
 print(Rice_Dataset.PC.Plot)
 #nolint end
+
+
+
+#nolint start
+
+# Hey Elvis, I made a PCA graph of variables to contribute to our model. 
+# I thought your PCA plot looked great in that in classifies the 2 categories
+# All the remains is just specifying our axes and thought this could be state in the paper.
+# It seems to me both categories show PC1 corresponds to Area, Convex_Area, Perimeter, Major_Axis_Length, and Eccentricity whereas PC2 corresponds to Extent and Minor_Axis_Length.
+# Not sure if this means anything and am having difficulty naming PC1 and PC2; IIRC Dr. Poliak mentioned naming was according to our discretion if you remember the Baseball example.
+
+# ----- Mohammed, 2026/11/15
+
+library(FactoMineR)
+
+Rice.PCA = PCA(Rice_Dataset[,-8], graph = FALSE)
+plot(Rice.PCA, choix = "var")
+screeplot(Rice_Dataset.PC, type = "lines")  # Help me find/determine the elbow! 11/15/26 Mohammed
+
+#nolint end
+
+
+
+
