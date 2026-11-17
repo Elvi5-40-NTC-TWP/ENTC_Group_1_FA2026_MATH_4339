@@ -31,11 +31,7 @@ Rice_Dataset.PC.Plot <- ggplot(Rice_Dataset.PC.Data, aes(x = PC1, y = PC2, color
 print(Rice_Dataset.PC)
 print(summary(Rice_Dataset.PC)) # Does print really need to be there? 11/15/26 Mohammed
 print(Rice_Dataset.PC.Plot)
-#nolint end
 
-
-
-#nolint start
 
 # Hey Elvis, I made a PCA graph of variables to contribute to our model. 
 # I thought your PCA plot looked great in that it classifies the 2 categories
@@ -45,14 +41,26 @@ print(Rice_Dataset.PC.Plot)
 
 # ----- Mohammed, 2026/11/15
 
+# Quick edit here, I just added the factorextra library into this little section as the code as it's didn't
+# worked properly without it. Also, I implemented the print funciton onto the plot funcitons as my setup
+# doesn't work like Rstudio with its run button. Also, I saw the graphs you mentioned; up to PC2 should be
+# fine stopping as its eigenvalue is above one -- the kaiser criterion -- and it explained 8684% of the 
+# dataset. Also, we can have just a single #nolint zone in this file anyways -- save on typing the zone.
+# Also I added the PCLogR onto it aswell.
+
+# ----- Elvis, 2026/11/17
+
 library(FactoMineR)
+library(factoextra)
 
 Rice.PCA = PCA(Rice_Dataset[,-8], graph = FALSE)
-plot(Rice.PCA, choix = "var")
-screeplot(Rice_Dataset.PC, type = "lines")  # Help me find/determine the elbow! 11/15/26 Mohammed
+print(plot(Rice.PCA, choix = "var"))
+print(screeplot(Rice_Dataset.PC, type = "lines"))  # Help me find/determine the elbow! 11/15/26 Mohammed
+
+Rice.PCA.Scores <- as.data.frame(Rice.PCA$ind$coord)
+Number_Comps <- 2
+Rice.PCA.Data <- data.frame(Class = Rice_Dataset$Class, Rice.PCA.Scores[, 1:Number_Comps, drop = FALSE])
+Rice.PCA.glm <- glm(Class ~ ., data = Rice.PCA.Data, family = binomial)
+print(summary(Rice.PCA.glm))
 
 #nolint end
-
-
-
-
