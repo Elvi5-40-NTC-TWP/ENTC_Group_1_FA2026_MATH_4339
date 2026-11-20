@@ -1,5 +1,5 @@
 library(readr)
-rice_data <- read_csv("RStudio/Multivariate Statistics - RStudio/Multivarite Project/rice_data.csv")
+rice_data <- read_csv("rice_data.csv")
 
 plot(rice_data)
 dim(rice_data)

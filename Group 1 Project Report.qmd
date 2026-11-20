@@ -1,6 +1,6 @@
 ---
 title: "MATH 4339 - Group 1 Project Report Fall 2026"
-author: "Mohammed Meje"
+author: "Mohammed Meje, Alexander Betancourt, Elvis Trujillo Chairez, Damian Bhakta"
 format: 
   pdf:
     mainfont: "Times New Roman"
@@ -34,3 +34,31 @@ Quarto enables you to weave together content and executable code into a finished
 ```
 
 Testing changes
+
+## Multivariate Analysis of Variance (MANOVA)
+
+A one-way MANOVA was used to test whether the mean vector of the seven morphological measurements (Area, Perimeter, Major_Axis_Length, Minor_Axis_Length, Eccentricity, Convex_Area and Extent) differs between the Cammeo ($n = 1630$) and Osmancik ($n = 2180$) rice varieties. The null hypothesis is that the two varieties share the same mean vector, $H_0: \boldsymbol{\mu}_{\text{Cammeo}} = \boldsymbol{\mu}_{\text{Osmancik}}$, and the alternative is that at least one variable mean differs. Before the test was run, the correlations among the seven variables were examined, and the MANOVA assumptions of multivariate normality within each variety and equal covariance matrices across varieties were tested.
+
+The correlation matrix shows strong positive relationships among the size measurements. Area and Convex_Area are nearly identical ($r = 0.999$), and Perimeter is highly correlated with both Area ($r = 0.966$) and Major_Axis_Length ($r = 0.972$). Extent is only weakly correlated with every other variable ($|r| \le 0.20$). These strong correlations support analyzing the variables jointly with a multivariate method rather than with separate univariate tests.
+
+Multivariate normality was assessed for each variety with the Henze--Zirkler test, and equality of the covariance matrices was assessed with Box's M test. The results are summarized in @tbl-manova-assumptions.
+
+| Assumption | Test | Group | Statistic | p-value | Conclusion |
+|:-----------|:-----|:------|----------:|--------:|:-----------|
+| Multivariate normality | Henze--Zirkler | Cammeo | $HZ = 5.359$ | $< 0.001$ | Not normal |
+| Multivariate normality | Henze--Zirkler | Osmancik | $HZ = 6.487$ | $< 0.001$ | Not normal |
+| Equal covariance matrices | Box's M | Both | $\chi^2 = 7055.8$, df $= 28$ | $< 2.2 \times 10^{-16}$ | Not equal |
+
+: MANOVA assumption tests for the rice data. {#tbl-manova-assumptions}
+
+Neither variety is multivariate normal, and Box's M indicates that the two varieties have different covariance structures, so both assumptions are violated. However, both groups are very large, so by the Central Limit Theorem the sample mean vectors are approximately normal, and Box's M is known to be highly sensitive at large sample sizes. The MANOVA results are still reported but should be interpreted with these violations in mind.
+
+The MANOVA results are summarized in @tbl-manova-results.
+
+| Test | Effect | Statistic | Approx. F | Num df | Den df | p-value | Conclusion |
+|:-----|:-------|----------:|----------:|-------:|-------:|--------:|:-----------|
+| Wilks' Lambda | Class | $\Lambda = 0.30373$ | $1245.1$ | 7 | 3802 | $< 2.2 \times 10^{-16}$ | Reject $H_0$ |
+
+: One-way MANOVA of the seven morphological measurements by rice variety. {#tbl-manova-results}
+
+The MANOVA using Wilks' Lambda rejects the null hypothesis ($\Lambda = 0.30373$, approximate $F = 1245.1$ on 7 and 3802 degrees of freedom, $p < 2.2 \times 10^{-16}$). A Wilks' Lambda of about 0.30 means that roughly 70% of the generalized variation in the seven measurements is associated with rice variety. There is strong evidence that Cammeo and Osmancik grains differ in their mean morphological characteristics.
