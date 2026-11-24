@@ -56,4 +56,5 @@ summary(rice.glmBestSub)
 # AIC is 1369.9
 
 # Meaning the best variable for deciding if a rice species is Cammeo or Osmancik
+# are Area, Convex_Area, Perimeter, Minor_Axis_Length, and Major_Axis_Length
 #-------------------------------------------------------------------------------
